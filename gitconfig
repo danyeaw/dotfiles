@@ -1,0 +1,9 @@
+[push]
+	default = simple
+[user]
+	email = dan@yeaw.me
+	name = Dan Yeaw
+[credential]
+	helper = osxkeychain
+[core]
+	autocrlf = input
