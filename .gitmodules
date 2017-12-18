@@ -1,3 +1,21 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = git@github.com:anishathalye/dotbot.git
+[submodule "vim/plugged/lightline.vim"]
+	path = vim/plugged/lightline.vim
+	url = git@github.com:itchyny/lightline.vim.git
+[submodule "vim/plugged/deoplete.nvim"]
+	path = vim/plugged/deoplete.nvim
+	url = git@github.com:Shougo/deoplete.nvim.git
+[submodule "vim/plugged/vim-hug-neovim-rpc"]
+	path = vim/plugged/vim-hug-neovim-rpc
+	url = git@github.com:roxma/vim-hug-neovim-rpc.git
+[submodule "vim/plugged/nvim-yarp"]
+	path = vim/plugged/nvim-yarp
+	url = git@github.com:roxma/nvim-yarp.git
+[submodule "vim/plugged/fzf.vim"]
+	path = vim/plugged/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "fzf"]
+	path = fzf
+	url = git@github.com:junegunn/fzf.git
