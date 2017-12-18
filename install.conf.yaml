@@ -9,6 +9,11 @@
     ~/.vimrc: vimrc
     ~/.ideavimrc: ideavimrc
     ~/.gitconfig: gitconfig
+    ~/.tmux.conf: tmux.conf
+    ~/.tmux: tmux
+    ~/.fzf: fzf
+    ~/.fzf.bash: fzf.bash
+    ~/.bashrc: bashrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

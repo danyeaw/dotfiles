@@ -1,9 +1,8 @@
-[push]
-	default = simple
 [user]
 	email = dan@yeaw.me
 	name = Dan Yeaw
-[credential]
-	helper = osxkeychain
+[push]
+	default = simple
 [core]
 	autocrlf = input
+	editor = gvim
