@@ -130,3 +130,8 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# Local customized path and environment settings, etc.
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi
