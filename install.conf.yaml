@@ -14,6 +14,7 @@
     ~/.fzf: fzf
     ~/.fzf.bash: fzf.bash
     ~/.bashrc: bashrc
+    ~/.config/nvim: config/nvim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
