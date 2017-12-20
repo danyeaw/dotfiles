@@ -29,5 +29,9 @@ syntax enable
 if !has('gui_running')
     set t_Co=256
 endif
+
+" Enable True Color Support
+set termguicolors
+
 set background=dark
 colors zenburn
