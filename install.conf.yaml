@@ -13,6 +13,7 @@
     ~/.fzf.bash: fzf.bash
     ~/.bashrc: bashrc
     ~/.config/nvim: config/nvim
+    ~/.dir_colors: dircolors
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

@@ -135,3 +135,8 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
+
+# Install Zenburn dircolors
+eval $( dircolors -b $HOME/.dir_colors )
+alias dir='dir --color'
+alias ls='ls --color'
