@@ -23,7 +23,7 @@ let g:terminal_color_15 = '#eeeeec'
 set laststatus=2
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'

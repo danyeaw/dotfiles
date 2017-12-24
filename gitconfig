@@ -6,3 +6,14 @@
 [core]
 	autocrlf = input
 	editor = gvim
+[merge]
+	tool = vimdiff 
+[diff]
+	tool = vimdiff
+[mergetool]
+	path = nvim
+	trustExitCode = true
+[difftool]
+	path = nvim
+	prompt = false
+	trustExitCode = true
