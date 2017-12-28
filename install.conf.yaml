@@ -12,6 +12,7 @@
     ~/.fzf: fzf
     ~/.fzf.bash: fzf.bash
     ~/.bashrc: bashrc
+    ~/.bash_profile: bash_profile
     ~/.config/nvim: config/nvim
     ~/.dir_colors: dircolors
 
