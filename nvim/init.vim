@@ -26,21 +26,33 @@ call plug#begin('~/.vim/plugged')
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/vim-gitbranch'
 Plug 'Shougo/deoplete.nvim'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
+Plug 'w0rp/ale'
 call plug#end()
 
-" Set colorscheme and add Git status for Lightline
+" Set colorscheme, add Git status, and ALE for Lightline
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \   'left':  [[ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]], 
+      \   'right': [[ 'lineinfo'], ['percent'], [ 'linter_errors', 'linter_warnings', 'linter_ok' ]]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ 'component_expand': {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ },
+      \ 'component_type': {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
       \ },
       \ }
 
@@ -59,3 +71,6 @@ let g:deoplete#enable_at_startup = 1
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
+" Disable ALE Highlighting
+let g:ale_set_highlights = 0

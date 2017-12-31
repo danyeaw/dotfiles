@@ -2,7 +2,7 @@
 " This must be first, because it changes other options
 set nocompatible
 
-" Add Leader key for other commands
+" Set leader to space key for other commands
 let mapleader=' '
 
 " Make backspace behave in a sane manner.
@@ -13,7 +13,14 @@ filetype plugin indent on
 set autoindent
 set smarttab
 
-set number
+" Automatically toggle between hybrid and absolute line numbers
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Reload file if it is set outside of vim
 set autoread
@@ -33,5 +40,9 @@ endif
 " Enable True Color Support
 set termguicolors
 
+" Setup theme
 set background=dark
 colors zenburn
+
+" Remove directory banner in netrw
+let g:netrw_banner = 0
