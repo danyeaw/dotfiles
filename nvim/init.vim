@@ -23,15 +23,16 @@ let g:terminal_color_15 = '#eeeeec'
 set laststatus=2
 
 call plug#begin('~/.vim/plugged')
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'itchyny/vim-gitbranch'
-Plug 'Shougo/deoplete.nvim'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-Plug 'w0rp/ale'
+Plug '~/.fzf' "Fuzzy search
+Plug 'junegunn/fzf.vim' "FZF Plugin
+Plug 'itchyny/lightline.vim' "Status line
+Plug 'maximbaz/lightline-ale' "Lint support for status line
+Plug 'itchyny/vim-gitbranch' "Display current git branch for status line
+Plug 'Shougo/deoplete.nvim' "Autocomplete
+Plug 'xolox/vim-easytags' "Ctags
+Plug 'xolox/vim-misc' "Dependency of vim-easytags
+Plug 'w0rp/ale' "Linter
+Plug 'tmhedberg/SimpylFold' "Python folding support
 call plug#end()
 
 " Set colorscheme, add Git status, and ALE for Lightline
@@ -74,3 +75,8 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 
 " Disable ALE Highlighting
 let g:ale_set_highlights = 0
+
+" Setup ALE to only use Prospector for python
+let g:ale_linters = {
+        \ 'python': ['prospector'],
+	\ }

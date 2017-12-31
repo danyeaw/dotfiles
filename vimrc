@@ -46,3 +46,6 @@ colors zenburn
 
 " Remove directory banner in netrw
 let g:netrw_banner = 0
+
+" Enable mouse click support in all modes
+set mouse=a
