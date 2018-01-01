@@ -35,6 +35,7 @@ Plug 'xolox/vim-misc' "Dependency of vim-easytags
 Plug 'w0rp/ale' "Linter
 Plug 'tmhedberg/SimpylFold' "Python folding support
 Plug 'thaerkh/vim-workspace' "Session management and autosave
+Plug 'tpope/vim-commentary' "Comment and uncomment text
 call plug#end()
 
 " Set colorscheme, add Git status, and ALE for Lightline
