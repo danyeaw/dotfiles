@@ -85,6 +85,9 @@ nnoremap <Right> :bnext<CR>
 
 " ALlow buffer switching without saving
 set hidden
+  
+" Always show status line for last window
+set laststatus=2
 
 " Always show tabline
 set showtabline=2

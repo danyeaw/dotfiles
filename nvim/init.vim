@@ -19,9 +19,6 @@ let g:terminal_color_13 = '#ad7fa8'
 let g:terminal_color_14 = '#00f5e9'
 let g:terminal_color_15 = '#eeeeec'
 
-" Turn off vim status for lightline
-set laststatus=2
-
 call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' "Fuzzy searching
 Plug 'itchyny/lightline.vim' "Status line
