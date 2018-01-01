@@ -30,7 +30,6 @@ Plug 'taohex/lightline-buffer' "Top buffer for lightline
 Plug 'maximbaz/lightline-ale' "Lint support for lightline
 Plug 'itchyny/vim-gitbranch' "Display current git branch for lightline
 Plug 'Shougo/deoplete.nvim' "Autocomplete
-Plug 'xolox/vim-easytags' "Ctags
 Plug 'xolox/vim-misc' "Dependency of vim-easytags
 Plug 'w0rp/ale' "Linter
 Plug 'tmhedberg/SimpylFold' "Python folding support
