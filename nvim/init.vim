@@ -26,13 +26,15 @@ call plug#begin('~/.vim/plugged')
 Plug '~/.fzf' "Fuzzy search
 Plug 'junegunn/fzf.vim' "FZF Plugin
 Plug 'itchyny/lightline.vim' "Status line
-Plug 'maximbaz/lightline-ale' "Lint support for status line
-Plug 'itchyny/vim-gitbranch' "Display current git branch for status line
+Plug 'taohex/lightline-buffer' "Top buffer for lightline
+Plug 'maximbaz/lightline-ale' "Lint support for lightline
+Plug 'itchyny/vim-gitbranch' "Display current git branch for lightline
 Plug 'Shougo/deoplete.nvim' "Autocomplete
 Plug 'xolox/vim-easytags' "Ctags
 Plug 'xolox/vim-misc' "Dependency of vim-easytags
 Plug 'w0rp/ale' "Linter
 Plug 'tmhedberg/SimpylFold' "Python folding support
+Plug 'thaerkh/vim-workspace' "Session management and autosave
 call plug#end()
 
 " Set colorscheme, add Git status, and ALE for Lightline
@@ -40,20 +42,33 @@ let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left':  [[ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]], 
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
       \   'right': [[ 'lineinfo'], ['percent'], [ 'linter_errors', 'linter_warnings', 'linter_ok' ]]
       \ },
+      \ 'tabline': {
+      \   'left': [ [ 'bufferinfo' ],
+      \             [ 'separator' ],
+      \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+      \   'right': [ [ 'close' ], ],
+      \ },
       \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
+      \   'gitbranch': 'gitbranch#name',
+      \   'bufferinfo': 'lightline#buffer#bufferinfo',
       \ },
       \ 'component_expand': {
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors',
+      \   'linter_ok': 'lightline#ale#ok',
+      \   'buffercurrent': 'lightline#buffer#buffercurrent',
+      \   'bufferbefore': 'lightline#buffer#bufferbefore',
+      \   'bufferafter': 'lightline#buffer#bufferafter',
       \ },
       \ 'component_type': {
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \   'buffercurrent': 'tabsel',
+      \   'bufferbefore': 'raw',
+      \   'bufferafter': 'raw',
       \ },
       \ }
 
@@ -80,3 +95,28 @@ let g:ale_set_highlights = 0
 let g:ale_linters = {
         \ 'python': ['prospector'],
 	\ }
+
+" lightline-buffer ui settings
+" replace these symbols with ascii characters if your environment does not support unicode
+let g:lightline_buffer_logo = ' '
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_modified_icon = '✭'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
+let g:lightline_buffer_separator_icon = '  '
+
+" lightline-buffer function settings
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler']
+
+let g:lightline_buffer_maxflen = 30
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20

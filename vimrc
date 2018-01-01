@@ -49,3 +49,13 @@ let g:netrw_banner = 0
 
 " Enable mouse click support in all modes
 set mouse=a
+
+" remap arrow keys
+nnoremap <Left> :bprev<CR>
+nnoremap <Right> :bnext<CR>
+
+" ALlow buffer switching without saving
+set hidden
+
+" Always show tabline
+set showtabline=2
