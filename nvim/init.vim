@@ -23,14 +23,12 @@ let g:terminal_color_15 = '#eeeeec'
 set laststatus=2
 
 call plug#begin('~/.vim/plugged')
-Plug '~/.fzf' "Fuzzy search
-Plug 'junegunn/fzf.vim' "FZF Plugin
+Plug 'ctrlpvim/ctrlp.vim' "Fuzzy searching
 Plug 'itchyny/lightline.vim' "Status line
 Plug 'taohex/lightline-buffer' "Top buffer for lightline
 Plug 'maximbaz/lightline-ale' "Lint support for lightline
 Plug 'itchyny/vim-gitbranch' "Display current git branch for lightline
 Plug 'Shougo/deoplete.nvim' "Autocomplete
-Plug 'xolox/vim-misc' "Dependency of vim-easytags
 Plug 'w0rp/ale' "Linter
 Plug 'tmhedberg/SimpylFold' "Python folding support
 Plug 'thaerkh/vim-workspace' "Session management and autosave
