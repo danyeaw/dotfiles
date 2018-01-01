@@ -10,8 +10,6 @@
     ~/.ideavimrc: ideavimrc
     ~/.gitconfig: gitconfig
     ~/.git_template: git_template
-    ~/.fzf: fzf
-    ~/.fzf.bash: fzf.bash
     ~/.bashrc: bashrc
     ~/.bash_profile: bash_profile
     ~/.dir_colors: dircolors
