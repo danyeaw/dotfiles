@@ -13,6 +13,7 @@
     ~/.bashrc: bashrc
     ~/.bash_profile: bash_profile
     ~/.dir_colors: dircolors
+    ~/.tags: tags
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

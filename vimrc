@@ -111,7 +111,7 @@ set laststatus=2
 set showtabline=2
 
 " Enable CTags in .git directory
-set tags=./.git/tags;
+set tags=./.git/tags;,~/.tags/tags
 
 " Set min history
 if &history < 1000
