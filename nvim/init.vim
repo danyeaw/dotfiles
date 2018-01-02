@@ -72,6 +72,8 @@ let g:deoplete#enable_at_startup = 1
 
 " Disable ALE Highlighting
 let g:ale_set_highlights = 0
+" Disable ALE running linters on opening a file
+let g:ale_lint_on_enter = 0
 
 " Setup ALE to only use Prospector for python
 let g:ale_linters = {

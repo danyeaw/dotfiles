@@ -76,6 +76,24 @@ colors zenburn
 " Remove directory banner in netrw
 let g:netrw_banner = 0
 
+" Absolute width of netrw window
+let g:netrw_winsize = -28
+
+" Tree-view
+let g:netrw_liststyle = 3
+
+" Sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" Use the previous window to open file
+let g:netrw_browse_split = 4
+
+" Map Ctrl+E to netrw
+nmap <silent> <C-E> :Lexplore<CR>
+
+" Change directory to the current buffer when opening files.
+set autochdir
+
 " Enable mouse click support in all modes
 set mouse=a
 
@@ -83,7 +101,7 @@ set mouse=a
 nnoremap <Left> :bprev<CR>
 nnoremap <Right> :bnext<CR>
 
-" ALlow buffer switching without saving
+" Allow buffer switching without saving
 set hidden
   
 " Always show status line for last window
