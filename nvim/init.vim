@@ -30,6 +30,8 @@ Plug 'w0rp/ale' "Linter
 Plug 'tmhedberg/SimpylFold' "Python folding support
 Plug 'thaerkh/vim-workspace' "Session management and autosave
 Plug 'tpope/vim-commentary' "Comment and uncomment text
+Plug 'SirVer/ultisnips' "Snippet engine
+Plug 'honza/vim-snippets' "Snippet collection
 call plug#end()
 
 " Set colorscheme, add Git status, and ALE for Lightline
@@ -107,3 +109,6 @@ let g:lightline_buffer_reservelen = 20
 
 " Speed up CtrlP load by skipping files in gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" Use Google Style docstrings for Python snippets
+let g:ultisnips_python_style = 'google'
