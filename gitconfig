@@ -6,7 +6,7 @@
 [core]
 	autocrlf = input
 	editor = gvim
-	excludesfile = /Users/danyeaw/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff 
 [diff]
