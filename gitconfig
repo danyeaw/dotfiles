@@ -1,6 +1,6 @@
 [user]
-	email = dan@yeaw.me
 	name = Dan Yeaw
+	useConfigOnly = true
 [push]
 	default = simple
 [core]
