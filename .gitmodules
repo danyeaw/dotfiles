@@ -1,9 +1,3 @@
-[submodule "vim/plugged/lightline.vim"]
-	path = vim/plugged/lightline.vim
-	url = git@github.com:itchyny/lightline.vim.git
-[submodule "vim/plugged/deoplete.nvim"]
-	path = vim/plugged/deoplete.nvim
-	url = git@github.com:Shougo/deoplete.nvim.git
 [submodule "vim/plugged/vim-hug-neovim-rpc"]
 	path = vim/plugged/vim-hug-neovim-rpc
 	url = git@github.com:roxma/vim-hug-neovim-rpc.git

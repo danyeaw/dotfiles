@@ -1,3 +1,9 @@
+" On Windows, also use '.vim' instead of 'vimfiles'; this makes
+" " synchronization across (heterogeneous) systems easier.
+if has('win32')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options
 set nocompatible
