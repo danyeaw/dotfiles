@@ -105,9 +105,6 @@ let g:netrw_browse_split = 4
 " Map Ctrl+E to netrw
 nmap <silent> <C-E> :Lexplore<CR>
 
-" Change directory to the current buffer when opening files.
-set autochdir
-
 " Enable mouse click support in all modes
 set mouse=a
 
