@@ -38,8 +38,16 @@ endif
 " Enable ruler
 set ruler
 
-" Enable enhanced tab completion through cycling through different options when
+
+" FINDING FILES:
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
 set wildmenu
+
 
 " Automatically toggle between hybrid and absolute line numbers
 set number relativenumber
@@ -134,3 +142,4 @@ endif
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
+
