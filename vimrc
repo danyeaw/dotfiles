@@ -4,6 +4,17 @@ if has('win32')
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
+" Make GVim and MacVim have nicer fonts
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options
 set nocompatible
@@ -160,4 +171,3 @@ func! WordProcessorMode()
   setlocal linebreak 
 endfu 
 com! WP call WordProcessorMode()
-=======
