@@ -15,7 +15,7 @@
     ~/.dir_colors: dircolors
     ~/.tags: tags
     ~/.gitignore_global: gitignore_global
-    ~/.config/nvim/init.vim: nvim\init.vim
+    ~/.config/nvim: nvim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

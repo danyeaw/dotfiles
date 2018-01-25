@@ -20,7 +20,7 @@ let g:terminal_color_14 = '#00f5e9'
 let g:terminal_color_15 = '#eeeeec'
 
 call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim' "Fuzzy searching
+" Plug 'ctrlpvim/ctrlp.vim' "Fuzzy searching
 Plug 'itchyny/lightline.vim' "Status line
 Plug 'taohex/lightline-buffer' "Top buffer for lightline
 Plug 'maximbaz/lightline-ale' "Lint support for lightline

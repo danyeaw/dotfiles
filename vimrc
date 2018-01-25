@@ -44,8 +44,16 @@ endif
 " Enable ruler
 set ruler
 
-" Enable enhanced tab completion through cycling through different options when
+
+" FINDING FILES:
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
 set wildmenu
+
 
 " Automatically toggle between hybrid and absolute line numbers
 set number relativenumber
@@ -96,9 +104,6 @@ let g:netrw_browse_split = 4
 
 " Map Ctrl+E to netrw
 nmap <silent> <C-E> :Lexplore<CR>
-
-" Change directory to the current buffer when opening files.
-set autochdir
 
 " Enable mouse click support in all modes
 set mouse=a
@@ -155,3 +160,4 @@ func! WordProcessorMode()
   setlocal linebreak 
 endfu 
 com! WP call WordProcessorMode()
+=======
