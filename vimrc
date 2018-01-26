@@ -96,7 +96,7 @@ set termguicolors
 
 " Setup theme
 set background=dark
-colors zenburn
+colors seoul256 
 
 " Remove directory banner in netrw
 let g:netrw_banner = 0
@@ -169,5 +169,6 @@ func! WordProcessorMode()
   set formatprg=par
   setlocal wrap 
   setlocal linebreak 
+  set background=light
 endfu 
 com! WP call WordProcessorMode()
