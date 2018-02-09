@@ -1,7 +1,8 @@
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes
 " " synchronization across (heterogeneous) systems easier.
 if has('win32')
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  set runtimepath=$HOME/.vim,$HOME/.vim/plugins,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  set packpath=$HOME/.vim
 endif
 
 " Make GVim and MacVim have nicer fonts
@@ -154,8 +155,13 @@ endif
 
 " Load matchit.vim (% matching), but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
+  runtime! $VIMRUNTIME/macros/matchit.vim
 endif
+
+" if has('win32')
+"  call pack#load()
+"  PlugOpt 'vimwiki/plugin/vimwiki.vim'
+" endif
 
 " Add Word Processor Mode from http://www.drbunsen.org/writing-in-vim/
 func! WordProcessorMode() 
@@ -170,5 +176,6 @@ func! WordProcessorMode()
   setlocal wrap 
   setlocal linebreak 
   set background=light
+  packadd vimwiki
 endfu 
 com! WP call WordProcessorMode()

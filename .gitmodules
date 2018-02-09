@@ -1,3 +1,6 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "vim/pack/plugins/opt/vimwiki"]
+	path = vim/pack/plugins/opt/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
