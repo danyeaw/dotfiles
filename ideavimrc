@@ -1,4 +1,4 @@
-source ~/.vimrc
+" source ~/.vimrc
 set clipboard=unnamedplus, unnamed
 
 " Use IDEA's internal Find
