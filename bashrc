@@ -13,13 +13,6 @@ if [ -x "$(command -v dircolors)" ]; then
     alias egrep='egrep --color=auto'
 fi
 
-[ -x /usr/bin/python3 ] && export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-[ -x /usr/local/bin/python3 ] && export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-[ -f $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-
 # Configure FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -34,3 +27,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
+export PATH="$HOME/.local/bin:$PATH"

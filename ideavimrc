@@ -2,9 +2,9 @@ source ~/.vimrc
 set clipboard=unnamedplus, unnamed
 
 " Use IDEA's internal Find
-nnoremap / :action Find<CR>
-nnoremap n :action FindNext<CR>
-nnoremap N :action FindPrevious<CR>
+" nnoremap / :action Find<CR>
+" nnoremap n :action FindNext<CR>
+" nnoremap N :action FindPrevious<CR>
 
 " Perform actions on windows
 nnoremap <C-w>c  :action CloseActiveTab<CR>
