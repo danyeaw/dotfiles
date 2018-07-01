@@ -13,23 +13,7 @@ if [ -x "$(command -v dircolors)" ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Configure FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc...
-# --hidden: Search hidden files and folders
-# --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-
 # Local customized path and environment settings, etc.
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
-fi
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
 fi
