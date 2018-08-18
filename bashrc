@@ -17,3 +17,7 @@ fi
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
