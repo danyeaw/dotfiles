@@ -1,6 +1,9 @@
 [ -f /etc/bashrc ] && source /etc/bashrc
 [ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
 
+# enable globbing like **/*.py
+shopt -s globstar
+
 # enable color support of ls and also add handy aliases
 if [ -x "$(command -v dircolors)" ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
