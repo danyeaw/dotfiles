@@ -15,3 +15,4 @@ vnoremap gc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action Comme
 nnoremap gcap vap:<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>gv
 set multiple-cursors
 set surround
+set incsearch
