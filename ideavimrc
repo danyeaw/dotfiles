@@ -13,3 +13,6 @@ nnoremap <C-w>c  :action CloseActiveTab<CR>
 nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>gv
 nnoremap gcap vap:<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>gv
+set multiple-cursors
+set surround
+set incsearch

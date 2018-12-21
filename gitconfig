@@ -2,6 +2,7 @@
 	name = Dan Yeaw
 	useConfigOnly = true
 	email = dan@yeaw.me
+	signingkey = 77A923EF537B61A4
 [push]
 	default = simple
 [core]
@@ -27,3 +28,5 @@
 	ctags = !.git/hooks/ctags
 [init]
 	templatedir = ~/.git_template
+[commit]
+	gpgsign = true
