@@ -7,7 +7,7 @@
 	default = simple
 [core]
 	autocrlf = input
-	editor = gvim
+	editor = gvim --remote-wait-silent
 	excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff 
@@ -32,3 +32,6 @@
 	templatedir = ~/.git_template
 [commit]
 	gpgsign = true
+[advice]
+	ignoreHook = false
+	ignoredHook = false
