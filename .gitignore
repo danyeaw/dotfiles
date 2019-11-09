@@ -12,3 +12,6 @@ Thumbs.db
 ###############
 vim/plugged/
 vim/.vim/plugged
+
+# Vim
+vim/.netrwhist
