@@ -7,31 +7,22 @@
 	default = simple
 [core]
 	autocrlf = input
-	editor = gvim --remote-wait-silent
-	excludesfile = ~/.gitignore_global
+	editor = vim
 [merge]
 	tool = vimdiff 
 [diff]
 	tool = vimdiff
 [mergetool]
-	path = nvim
+	path = vim
 	trustExitCode = true
 [difftool]
-	path = nvim
+	path = vim
 	prompt = false
 	trustExitCode = true
-[alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
-	unstage = reset HEAD --
-	last = log -1 HEAD
-	ctags = !.git/hooks/ctags
-[init]
-	templatedir = ~/.git_template
 [commit]
 	gpgsign = true
 [advice]
 	ignoreHook = false
 	ignoredHook = false
+[credential]
+	helper = manager
