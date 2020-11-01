@@ -158,11 +158,6 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! $VIMRUNTIME/macros/matchit.vim
 endif
 
-" if has('win32')
-"  call pack#load()
-"  PlugOpt 'vimwiki/plugin/vimwiki.vim'
-" endif
-
 " Add Word Processor Mode from http://www.drbunsen.org/writing-in-vim/
 func! WordProcessorMode() 
   setlocal formatoptions=1 
