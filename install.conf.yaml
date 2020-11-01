@@ -9,12 +9,10 @@
     ~/.vimrc: vimrc
     ~/.ideavimrc: ideavimrc
     ~/.gitconfig: gitconfig
-    ~/.git_template: git_template
     ~/.bashrc: bashrc
     ~/.bash_profile: bash_profile
     ~/.dir_colors: dircolors
     ~/.tags: tags
-    ~/.gitignore_global: gitignore_global
     ~/.config/nvim: nvim
     ~/.profile: profile
     ~/.gitattributes: gitattributes
