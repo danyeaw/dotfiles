@@ -7,8 +7,9 @@
 	default = simple
 [core]
 	autocrlf = input
-	editor = gvim --remote-wait-silent
+	editor = vim
 	excludesfile = ~/.gitignore_global
+	attributesfile = /home/dan/.gitattributes
 [merge]
 	tool = vimdiff 
 [diff]
@@ -35,3 +36,7 @@
 [advice]
 	ignoreHook = false
 	ignoredHook = false
+[credential]
+	helper = store
+[pull]
+	ff = only
