@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/dan/Projects/gaphas/gaphas/tool'
+let g:netrw_dirhist_4='/home/dan/Projects/gaphas/gaphas'
+let g:netrw_dirhist_3='/home/dan/Projects/gaphas'
+let g:netrw_dirhist_2='/home/dan/Projects/dotfiles/nvim/lua/lsp'
+let g:netrw_dirhist_1='/home/dan/Projects/gaphas'
+let g:netrw_dirhist_0='/home/dan/Projects/gaphas/gaphas'
+let g:netrw_dirhist_9='/home/dan/Projects/gaphas'
+let g:netrw_dirhist_8='/home/dan/Projects/gaphas/gaphas'
+let g:netrw_dirhist_7='/home/dan/Projects/gaphas'
+let g:netrw_dirhist_6='/home/dan/Projects/gaphas/gaphas'

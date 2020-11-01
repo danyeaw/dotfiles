@@ -21,7 +21,7 @@ endif
 set nocompatible
 
 " Set leader to space key for other commands
-let mapleader=' '
+let mapleader=','
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
