@@ -36,4 +36,20 @@ local on_attach = function(client, bufnr)
     vim.fn.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", {noremap = true, silent = true})
 end
 
-nvim_lsp.pyls.setup({on_attach=on_attach})
+nvim_lsp.pyls.setup {
+    on_attach = on_attach,
+    settings = {
+	pyls = {
+	    configurationSources = {'flake8'},
+	    plugins = {
+                autopep8 = {enabled = false},
+                black = {enabled = true},
+                flake8 = {enabled = true},
+                mccabe = {enabled = false},
+                pycodestyle = {enabled = false},
+                pyflakes = {enabled = false},
+                yapf = {enabled = false}
+	    }
+	}
+    }
+}
