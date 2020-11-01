@@ -46,6 +46,10 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 
+# Add .local/bin to path
 if [ -f "$HOME/.local/bin" ]; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
+
+# Configure git credential manager core
+export GCM_CREDENTIAL_STORE=secretservice

@@ -26,8 +26,10 @@
 [advice]
 	ignoreHook = false
 	ignoredHook = false
-[credential]
-	helper = manager
 [pull]
 	ff = only
 	helper = manager
+[credential]
+	helper = manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
