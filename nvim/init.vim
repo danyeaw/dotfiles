@@ -1,5 +1,5 @@
-" Start with vim settings
-source ~/.vimrc
+set background=dark
+colorscheme seoul256
 
 " Colors
 let g:terminal_color_0  = '#2e3436'

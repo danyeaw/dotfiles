@@ -1,3 +1,6 @@
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes
 " " synchronization across (heterogeneous) systems easier.
 if has('win32')
@@ -16,20 +19,9 @@ if has("gui_running")
   endif
 endif
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options
-set nocompatible
-
 " Set leader to space key for other commands
 let mapleader=','
 
-" Make backspace behave in a sane manner.
-set backspace=indent,eol,start
-
-" Enable file type detection and do language-dependent indenting.
-if has('autocmd')
-  filetype plugin indent on
-endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
@@ -40,21 +32,10 @@ set autoindent
 " Inserts correct spaces as tabs
 set smarttab
 
-" Terminal timeout for part of key code sequence received by terminal
-if !has('nvim') && &ttimeoutlen == -1
-  set ttimeout
-  set ttimeoutlen=100
-endif
-
-" Display search as you type it
-set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
-
-" Enable ruler
-set ruler
 
 
 " FINDING FILES:
@@ -62,10 +43,6 @@ set ruler
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
-
-" Display all matching files when we tab complete
-set wildmenu
-
 
 " Automatically toggle between hybrid and absolute line numbers
 set number relativenumber
@@ -77,9 +54,6 @@ augroup END
 
 " Reload file if it is set outside of vim
 set autoread
-
-" Prevent accidental Ctrl+u
-inoremap <C-U> <C-G>u<C-U>
 
 " Switch syntax highlighting on after loading theme
 syntax enable
@@ -133,13 +107,6 @@ set laststatus=2
 " Always show tabline
 set showtabline=2
 
-" Enable CTags in .git directory
-set tags=./.git/tags;,~/.tags/tags
-
-" Set min history
-if &history < 1000
-  set history=1000
-endif
 " Max tabs, should default to 50
 if &tabpagemax < 50
   set tabpagemax=50
