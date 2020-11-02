@@ -10,8 +10,7 @@ Thumbs.db
 
 # VIM Plugins #
 ###############
-vim/plugged/
-vim/.vim/plugged
+plugged/
 
 # Vim
-vim/.netrwhist
+.netrwhist
