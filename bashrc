@@ -21,10 +21,6 @@ if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -53,3 +49,16 @@ fi
 
 # Configure git credential manager core
 export GCM_CREDENTIAL_STORE=secretservice
+
+# Poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Pipx
+export PIPX_DEFAULT_PYTHON=/home/dan/.pyenv/shims/python
