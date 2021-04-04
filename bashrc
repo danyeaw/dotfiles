@@ -45,3 +45,18 @@ if [[ "$OSTYPE" == "msys" ]]; then
     export PATH=$PATH:/c/tools/git/bin:/home/dyeaw/.local/bin:/c/users/dyeaw/.local/bin:$GOPATH/bin:/home/dyeaw/bin
     export PIP_REQUIRE_VIRTUALENV=true
 fi
+
+# bash-git-prompt
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    GIT_PROMPT_THEME=Single_line_Ubuntu
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
+
+# Add .local/bin to path
+if [ -f "$HOME/.local/bin" ]; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
+# Configure git credential manager core
+export GCM_CREDENTIAL_STORE=secretservice

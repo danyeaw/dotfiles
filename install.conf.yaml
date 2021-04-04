@@ -15,6 +15,7 @@
     ~/.tags: tags
     ~/.config/nvim: nvim
     ~/.profile: profile
+    ~/.gitattributes: gitattributes
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

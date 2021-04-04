@@ -8,6 +8,8 @@
 [core]
 	autocrlf = input
 	editor = vim
+	excludesfile = ~/.gitignore_global
+	attributesfile = /home/dan/.gitattributes
 [merge]
 	tool = vimdiff 
 [diff]
@@ -24,5 +26,10 @@
 [advice]
 	ignoreHook = false
 	ignoredHook = false
-[credential]
+[pull]
+	ff = only
 	helper = manager
+[credential]
+	helper = manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true

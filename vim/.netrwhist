@@ -1,5 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/danyeaw/.ipython'
-let g:netrw_dirhist_2='/Users/danyeaw/.config'
-let g:netrw_dirhist_3='/home/dan/Projects/dotfiles/vim/plugged/lightline.vim'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/run/user/1000/doc/by-app/test_.py'
