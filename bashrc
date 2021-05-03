@@ -35,6 +35,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [[ "$OSTYPE" == "msys" ]]; then
+    export GOROOT=/mingw64/lib/go
+    export GOPATH=/home/dyeaw/go
+    export PATH=$PATH:/c/tools/git/bin:/home/dyeaw/.local/bin:/c/users/dyeaw/.local/bin:$GOPATH/bin:/home/dyeaw/bin
+    export PIP_REQUIRE_VIRTUALENV=true
+fi
+
 # bash-git-prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
