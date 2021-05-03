@@ -94,10 +94,6 @@ nmap <silent> <C-E> :Lexplore<CR>
 " Enable mouse click support in all modes
 set mouse=a
 
-" remap arrow keys
-nnoremap <Left> :bprev<CR>
-nnoremap <Right> :bnext<CR>
-
 " Allow buffer switching without saving
 set hidden
   
@@ -106,6 +102,9 @@ set laststatus=2
 
 " Always show tabline
 set showtabline=2
+
+" Enable system clipboard for copy/paste
+set clipboard=unnamedplus
 
 " Max tabs, should default to 50
 if &tabpagemax < 50

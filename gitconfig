@@ -2,13 +2,13 @@
 	name = Dan Yeaw
 	useConfigOnly = true
 	email = dan@yeaw.me
-	signingkey = 77A923EF537B61A4
+	signingkey = 42239C515C9B9841
 [push]
 	default = simple
 [core]
 	autocrlf = input
 	editor = vim
-	excludesfile = ~/.gitignore_global
+	excludesFile = ~/.gitignore
 	attributesfile = /home/dan/.gitattributes
 [merge]
 	tool = vimdiff 
@@ -30,6 +30,6 @@
 	ff = only
 	helper = manager
 [credential]
-	helper = manager-core
+	helper = gnome-keyring
 [credential "https://dev.azure.com"]
 	useHttpPath = true
