@@ -39,3 +39,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# pyenv
+eval "$(pyenv init --path)"
