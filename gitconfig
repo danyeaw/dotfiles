@@ -33,3 +33,5 @@
 	helper = gnome-keyring
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[init]
+	defaultBranch = main
