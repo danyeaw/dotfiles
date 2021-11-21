@@ -16,6 +16,7 @@
     ~/.config/nvim: nvim
     ~/.profile: profile
     ~/.gitattributes: gitattributes
+    ~/.gnupg/gpg-agent.conf: gpg-agent.conf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

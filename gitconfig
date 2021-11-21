@@ -2,7 +2,7 @@
 	name = Dan Yeaw
 	useConfigOnly = true
 	email = dan@yeaw.me
-	signingkey = 30EE9BFEC3FD0B37F9088DBE42239C515C9B9841
+	signingkey = 0x30EE9BFEC3FD0B37F9088DBE42239C515C9B9841
 [push]
 	default = simple
 [core]
