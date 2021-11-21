@@ -50,7 +50,7 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
 fi
 
 # Add .local/bin to path
-if [ -f "$HOME/.local/bin" ]; then
+if [ -d "$HOME/.local/bin" ]; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
 
