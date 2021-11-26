@@ -2,7 +2,7 @@
 	name = Dan Yeaw
 	useConfigOnly = true
 	email = dan@yeaw.me
-	signingkey = 0x30EE9BFEC3FD0B37F9088DBE42239C515C9B9841
+	signingkey = 0x30ee9bfec3fd0b37f9088dbe42239c515c9b9841
 [push]
 	default = simple
 [core]
@@ -31,7 +31,7 @@
 	helper = manager
 [credential]
 	helper = /home/dan/.local/bin/git-credential-manager-core
-	# credentialStore = secretservice
+	credentialStore = secretservice
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [init]
