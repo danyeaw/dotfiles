@@ -30,7 +30,7 @@
 	ff = only
 	helper = manager
 [credential]
-	credentialStore = gpg
+	credentialStore = secretservice
 	helper = /home/dan/.local/bin/git-credential-manager-core
 [credential "https://dev.azure.com"]
 	useHttpPath = true
