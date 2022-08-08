@@ -9,11 +9,8 @@
     ~/.vimrc: vimrc
     ~/.ideavimrc: ideavimrc
     ~/.gitconfig: gitconfig
-    ~/.bashrc: bashrc
-    ~/.bash_profile: bash_profile
     ~/.dir_colors: dircolors
     ~/.tags: tags
-    ~/.profile: profile
     ~/.gitattributes: gitattributes
     ~/.gitignore: gitignore
     ~/.gnupg/gpg-agent.conf: gpg-agent.conf
