@@ -5,6 +5,7 @@
 	signingkey = 0x30ee9bfec3fd0b37f9088dbe42239c515c9b9841
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	autocrlf = input
 	editor = vim
