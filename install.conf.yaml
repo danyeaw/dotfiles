@@ -7,6 +7,7 @@
 - link:
     ~/.vim: vim
     ~/.vimrc: vimrc
+    ~/.var/app/io.neovim.nvim/config/nvim/init.vim: init.vim
     ~/.ideavimrc: ideavimrc
     ~/.gitconfig: gitconfig
     ~/.dir_colors: dircolors

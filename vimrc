@@ -1,5 +1,7 @@
 unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+if !has('nvim')
+  source $VIMRUNTIME/defaults.vim
+endif
 
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes
 " " synchronization across (heterogeneous) systems easier.
