@@ -35,5 +35,11 @@
 	helper = /home/dan/.local/bin/git-credential-manager-core
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[tag]
+	gpgsign = true
+[gpg "x509"]
+	program = gitsign
+[gpg]
+	format = x509
 [init]
 	defaultBranch = main
