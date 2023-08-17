@@ -19,15 +19,6 @@ let g:terminal_color_13 = '#ad7fa8'
 let g:terminal_color_14 = '#00f5e9'
 let g:terminal_color_15 = '#eeeeec'
 
-call plug#begin()
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-lua/diagnostic-nvim'
-call plug#end()
-
-lua require("lsp")
-
 " Syntax based code folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
