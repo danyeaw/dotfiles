@@ -1,4 +1,4 @@
 .idea
 .venv
 .flatpak-builder
-
+.DS_STORE
