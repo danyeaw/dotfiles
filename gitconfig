@@ -38,10 +38,6 @@
 	useHttpPath = true
 [tag]
 	gpgsign = true
-[gpg "x509"]
-	program = gitsign
-[gpg]
-	format = x509
 [gitsign]
 	connectorID = https://github.com/login/oauth
 [init]
