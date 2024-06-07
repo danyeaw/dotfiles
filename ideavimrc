@@ -19,3 +19,11 @@ set incsearch
 set argtextobj
 set commentary
 set easymotion
+set ideajoin
+
+" Same as default IDEA action, but only in insert mode. Enter block-visual
+" mode in normal mode.
+" sethandler <C-v> i:ide
+
+Plug 'terryma/vim-multiple-cursors'
+
