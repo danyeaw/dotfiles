@@ -23,7 +23,7 @@
 	prompt = false
 	trustExitCode = true
 [commit]
-	gpgsign = true
+	gpgsign = false
 [advice]
 	ignoreHook = false
 	ignoredHook = false
@@ -38,8 +38,6 @@
 	useHttpPath = true
 [tag]
 	gpgsign = true
-[gpg "x509"]
-	program = gitsign
 [gpg]
 	format = x509
 [gitsign]
