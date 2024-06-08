@@ -1,11 +1,20 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
+if test -f ~/.local/bin/pyenv
+    status is-login; and pyenv init --path | source
+    status is-interactive; and pyenv init - | source
 end
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/dan/google-cloud-sdk/path.fish.inc' ]; . '/home/dan/google-cloud-sdk/path.fish.inc'; end
+if test -f ~/google-cloud-sdk/path.fish.inc
+    . '~/google-cloud-sdk/path.fish.inc'
+end
 # rbenv
-status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
+if test -f ~/.rbenv/bin/rbenv
+    status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
+end
+
+# Hombrew
+if test -f /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+
