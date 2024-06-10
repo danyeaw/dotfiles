@@ -44,7 +44,7 @@
 	required = true
 	clean = git-lfs clean -- %f
 [credential]
-    helper = /usr/local/bin/git-credential-manager-core
+    helper = /usr/local/bin/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [include]
