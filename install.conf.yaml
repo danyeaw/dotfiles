@@ -21,7 +21,6 @@
     ~/.config/:
       glob: true
       path: config/*
-    ~/.config/sourcery/sourcery.yaml: sourcery.yaml
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

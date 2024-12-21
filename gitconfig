@@ -23,22 +23,29 @@
 	prompt = false
 	trustExitCode = true
 [commit]
-	gpgsign = true
+	gpgsign = false
 [advice]
 	ignoreHook = false
 	ignoredHook = false
 [pull]
 	ff = only
 	helper = manager
-[credential]
-	credentialStore = secretservice
-	helper = /home/dan/.local/bin/git-credential-manager-core
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [tag]
 	gpgsign = true
+[gpg]
+	format = x509
 [gitsign]
 	connectorID = https://github.com/login/oauth
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential]
+    helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[include]
+	path = ~/.gitconfig.local
