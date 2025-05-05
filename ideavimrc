@@ -27,3 +27,8 @@ set ideajoin
 
 Plug 'terryma/vim-multiple-cursors'
 
+" For formatting, especially comments
+" Depends on https://plugins.jetbrains.com/plugin/7234-wrap-to-column/
+" NOTE: vnoremap doesn't work with Actions
+vmap gq <Action>(com.andrewbrookins.idea.wrap.WrapAction)
+
