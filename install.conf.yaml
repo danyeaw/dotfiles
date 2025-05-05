@@ -18,6 +18,7 @@
     ~/.config/pypoetry/config.toml: pypoetry
     ~/.xsessionrc: xsessionrc
     ~/.docker/config.json: config.json
+    ~/.condarc: condarc
     ~/.config/:
       glob: true
       path: config/*

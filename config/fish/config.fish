@@ -20,3 +20,17 @@ end
 
 set PATH $PATH ~/.local/bin
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /Users/dyeaw/miniconda3/bin/conda
+    eval /Users/dyeaw/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/Users/dyeaw/miniconda3/etc/fish/conf.d/conda.fish"
+        . "/Users/dyeaw/miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/Users/dyeaw/miniconda3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
+
