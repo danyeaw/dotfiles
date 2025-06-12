@@ -23,7 +23,7 @@
 	prompt = false
 	trustExitCode = true
 [commit]
-	gpgsign = false
+	gpgsign = true
 [advice]
 	ignoreHook = false
 	ignoredHook = false
@@ -32,8 +32,6 @@
 	helper = manager
 [tag]
 	gpgsign = true
-[gpg]
-	format = x509
 [gitsign]
 	connectorID = https://github.com/login/oauth
 [init]
@@ -43,8 +41,6 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-[credential]
-    helper = /usr/local/bin/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [include]
