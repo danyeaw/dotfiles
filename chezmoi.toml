@@ -1,0 +1,21 @@
+# External repositories for Neovim plugins
+[".config/nvim/plugged/completion-nvim"]
+    type = "git-repo"
+    url = "https://github.com/nvim-lua/completion-nvim.git"
+    refreshPeriod = "168h" # Update weekly
+
+[".config/nvim/plugged/diagnostic-nvim"]
+    type = "git-repo"
+    url = "https://github.com/nvim-lua/diagnostic-nvim.git"
+    refreshPeriod = "168h"
+
+[".config/nvim/plugged/nvim-lspconfig"]
+    type = "git-repo"
+    url = "https://github.com/neovim/nvim-lspconfig.git"
+    refreshPeriod = "168h"
+
+[".config/nvim/plugged/nvim-treesitter"]
+    type = "git-repo"
+    url = "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    refreshPeriod = "168h"
+
