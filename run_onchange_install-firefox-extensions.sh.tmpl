@@ -1,0 +1,223 @@
+#!/bin/bash
+# chezmoi:template:file=run_onchange_install-firefox-extensions.sh.tmpl
+# This template installs Firefox extensions using enterprise policies
+
+set -euo pipefail
+
+{{- $os := .chezmoi.os }}
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Function to print colored output
+print_status() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Check if Firefox is installed (regular or Flatpak)
+FIREFOX_INSTALLED=false
+
+if command -v firefox &> /dev/null; then
+    print_status "Found Firefox in PATH"
+    FIREFOX_INSTALLED=true
+elif flatpak list --app | grep -q "org.mozilla.firefox"; then
+    print_status "Found Firefox Flatpak installation"
+    FIREFOX_INSTALLED=true
+elif [ -d "$HOME/.mozilla/firefox" ]; then
+    print_status "Found Firefox profile directory"
+    FIREFOX_INSTALLED=true
+fi
+
+if [ "$FIREFOX_INSTALLED" = false ]; then
+    print_error "Firefox is not installed. Please install Firefox first."
+    print_status "Install via system package manager or Flatpak:"
+    print_status "  Flatpak: flatpak install flathub org.mozilla.firefox"
+    print_status "  Ubuntu:  sudo apt install firefox"
+    print_status "  Fedora:  sudo dnf install firefox"
+    print_status "  Arch:    sudo pacman -S firefox"
+    exit 1
+fi
+
+# Create Firefox policies directory (handle both regular and Flatpak installations)
+if flatpak list --app | grep -q "org.mozilla.firefox"; then
+    # Flatpak Firefox stores data in ~/.var/app/org.mozilla.firefox/
+    FIREFOX_POLICIES_DIR="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/policies"
+    FIREFOX_PROFILE_DIRS="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"
+    print_status "Using Flatpak Firefox directories"
+else
+    # Regular Firefox installation
+    FIREFOX_POLICIES_DIR="$HOME/.mozilla/firefox/policies"
+    FIREFOX_PROFILE_DIRS="$HOME/.mozilla/firefox"
+    print_status "Using regular Firefox directories"
+fi
+
+mkdir -p "$FIREFOX_POLICIES_DIR"
+
+print_status "Creating Firefox policies.json for extension management..."
+
+# Read packages data
+{{- $packagesFile := .chezmoi.sourceDir | printf "%s/.chezmoidata/packages.yaml" }}
+{{- $packagesContent := include $packagesFile }}
+{{- $packagesData := fromYaml $packagesContent }}
+
+# Create policies.json
+cat > "$FIREFOX_POLICIES_DIR/policies.json" << 'EOF'
+{
+  "policies": {
+    "Extensions": {
+      "Install": [
+{{- $first := true }}
+{{- range $category, $extensions := $packagesData.packages.firefox_extensions }}
+{{- if eq $category "essential" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+        "{{ $extension }}"
+{{- $first = false }}
+{{- end }}
+{{- else if eq $category "linux" }}
+{{- if eq $os "linux" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+        "{{ $extension }}"
+{{- $first = false }}
+{{- end }}
+{{- end }}
+{{- else if eq $category "darwin" }}
+{{- if eq $os "darwin" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+        "{{ $extension }}"
+{{- $first = false }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+      ]
+    },
+    "ExtensionSettings": {
+{{- $first = true }}
+{{- range $category, $extensions := $packagesData.packages.firefox_extensions }}
+{{- if eq $category "essential" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+      "{{ $extension }}": {
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/{{ $extension }}/latest.xpi",
+        "installation_mode": "normal_installed"
+      }
+{{- $first = false }}
+{{- end }}
+{{- else if eq $category "linux" }}
+{{- if eq $os "linux" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+      "{{ $extension }}": {
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/{{ $extension }}/latest.xpi",
+        "installation_mode": "normal_installed"
+      }
+{{- $first = false }}
+{{- end }}
+{{- end }}
+{{- else if eq $category "darwin" }}
+{{- if eq $os "darwin" }}
+{{- range $extension := $extensions }}
+{{- if not $first }},{{ end }}
+      "{{ $extension }}": {
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/{{ $extension }}/latest.xpi",
+        "installation_mode": "normal_installed"
+      }
+{{- $first = false }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+    },
+    "PasswordManagerEnabled": false,
+    "OfferToSaveLogins": false,
+    "OfferToSaveLoginsDefault": false
+  }
+}
+EOF
+
+print_success "Firefox policies.json created successfully"
+
+# Create a user.js file for additional Firefox preferences (optional)
+if [ -d "$FIREFOX_PROFILE_DIRS" ]; then
+    print_status "Looking for Firefox profiles..."
+    
+    # Find default profile directory
+    PROFILE_DIR=$(find "$FIREFOX_PROFILE_DIRS" -name "*.default*" -type d | head -1)
+    
+    if [ -n "$PROFILE_DIR" ]; then
+        print_status "Found Firefox profile: $PROFILE_DIR"
+        
+        # Create user.js for additional preferences
+        cat > "$PROFILE_DIR/user.js" << 'EOF'
+// Firefox preferences for extension management
+user_pref("extensions.autoDisableScopes", 0);
+user_pref("extensions.enabledScopes", 15);
+user_pref("xpinstall.signatures.required", false);
+user_pref("signon.rememberSignons", false);
+user_pref("signon.autofillForms", false);
+user_pref("signon.generation.enabled", false);
+EOF
+        print_success "Firefox user.js preferences updated"
+    else
+        print_warning "No Firefox profile found. Extensions will be installed on next Firefox startup."
+    fi
+fi
+
+print_status "Firefox extension installation configured!"
+print_status "Note: Restart Firefox to apply extension policies."
+print_status "Extensions will be automatically installed from Mozilla Add-ons."
+
+# Optional: List configured extensions
+print_status "Configured extensions:"
+{{- range $category, $extensions := $packagesData.packages.firefox_extensions }}
+{{- if eq $category "essential" }}
+echo "  Essential Extensions:"
+{{- range $extension := $extensions }}
+echo "    - {{ $extension }}"
+{{- end }}
+{{- else if eq $category "linux" }}
+{{- if eq $os "linux" }}
+echo "  Linux Extensions:"
+{{- range $extension := $extensions }}
+echo "    - {{ $extension }}"
+{{- end }}
+{{- end }}
+{{- else if eq $category "darwin" }}
+{{- if eq $os "darwin" }}
+echo "  macOS Extensions:"
+{{- range $extension := $extensions }}
+echo "    - {{ $extension }}"
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if eq $os "linux" }}
+echo ""
+print_status "Note: GNOME Shell integration requires native connector:"
+print_status "Install with: sudo apt install chrome-gnome-shell (Ubuntu/Debian)"
+print_status "             sudo dnf install chrome-gnome-shell (Fedora)"
+print_status "             sudo pacman -S chrome-gnome-shell (Arch)"
+{{- end }}
+
+print_success "Firefox extension management setup complete!"
+

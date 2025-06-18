@@ -1,0 +1,116 @@
+packages:
+  flatpaks:
+    development:
+      - 'com.visualstudio.code'
+      - 'com.vscodium.codium'
+      - 'org.gnome.Builder'
+      - 'org.gnome.Devhelp'
+      - 're.sonny.Workbench'
+      - 're.sonny.Commit'
+      - 'org.gnome.gitg'
+      - 'ar.xjuan.Cambalache'
+      - 'org.gaphor.Gaphor'
+      - 'me.iepure.devtoolbox'
+      - 'org.freedesktop.Sdk.Extension.python-lsp'
+      - 'org.gnome.dspy'
+
+    browsers:
+      - 'org.mozilla.firefox'
+      - 'org.chromium.Chromium'
+      - 'io.gitlab.librewolf-community'
+      - 'org.gnome.Epiphany'
+
+    communication:
+      - 'com.discordapp.Discord'
+      - 'com.slack.Slack'
+      - 'org.signal.Signal'
+      - 'us.zoom.Zoom'
+      - 'org.mozilla.Thunderbird'
+      - 'dev.geopjr.Tuba'
+      - 'so.libdb.dissent'
+
+    media:
+      - 'org.gimp.GIMP'
+      - 'org.inkscape.Inkscape'
+      - 'org.pitivi.Pitivi'
+      - 'org.gnome.Music'
+      - 'org.gnome.Loupe'
+      - 'org.gnome.Snapshot'
+      - 'de.haeckerfelix.Shortwave'
+      - 'io.github.seadve.Mousai'
+
+    office:
+      - 'org.libreoffice.LibreOffice'
+      - 'org.gnome.Calculator'
+      - 'org.gnome.Calendar'
+      - 'org.gnome.Contacts'
+      - 'org.gnome.TextEditor'
+      - 'org.gnome.gitlab.somas.Apostrophe'
+      - 'io.github.fkinoshita.Telegraph'
+      - 'io.github.mrvladus.List'
+
+    reading:
+      - 'com.calibre_ebook.calibre'
+      - 'com.github.babluboy.bookworm'
+      - 'com.github.johnfactotum.Foliate'
+      - 'org.gnome.Evince'
+      - 'io.github.diegoivan.pdf_metadata_editor'
+
+    system:
+      - 'org.gnome.baobab'
+      - 'com.mattjakeman.ExtensionManager'
+      - 'com.github.tchx84.Flatseal'
+      - 'org.gnome.Logs'
+      - 'org.gnome.font-viewer'
+      - 'org.gnome.Characters'
+      - 'org.gnome.SimpleScan'
+      - 'com.github.finefindus.eyedropper'
+      - 'org.gnome.design.Lorem'
+
+    terminal:
+      - 'app.devsuite.Ptyxis'
+      - 'app.drey.Warp'
+      - 'de.haeckerfelix.Fragments'
+      - 'nz.mega.MEGAsync'
+
+    security:
+      - 'com.belmoussaoui.Authenticator'
+      - 'com.belmoussaoui.Decoder'
+      - 'org.gnome.DejaDup'
+      - 'org.gnome.World.PikaBackup'
+
+    gaming:
+      - 'org.gnome.Chess'
+      - 'org.gnome.Four-in-a-row'
+      - 'org.gnome.TwentyFortyEight'
+      - 'org.azahar_emu.Azahar'
+      - 'page.kramo.Cartridges'
+      - 'page.kramo.Sly'
+
+    web:
+      - 'app.drey.Dialect'
+      - 're.sonny.Junction'
+      - 're.sonny.Tangram'
+      - 'io.gitlab.news_flash.NewsFlash'
+
+    virtualization:
+      - 'org.gnome.Boxes'
+      - 'org.gnome.Maps'
+      - 'org.gnome.Weather'
+
+    data:
+      - 'se.sjoerd.Graphs'
+      - 'im.bernard.Nostalgia'
+
+
+  firefox_extensions:
+    essential:
+      - 'ublock-origin@raymondhill.net'
+      - '446900e4-71c2-419f-a6a7-df9c091e268b'
+      - 'languagetool-webextension@languagetool.org'
+    
+    linux:
+      - 'gnome-shell-integration'
+    
+    darwin:
+      - 'plugin@okta.com'
