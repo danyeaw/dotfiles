@@ -1,0 +1,7 @@
+.ssh/id_rsa*
+!.ssh/id_rsa_yubikey.pub
+
+# Ignore GPG private keys (they're on the YubiKey)
+.gnupg/private-keys-v1.d/
+.gnupg/openpgp-revocs.d/
+.gnupg/random_seed

@@ -1,0 +1,66 @@
+[user]
+    name = {{ .name }}
+    email = {{ .default_email }}
+    signingkey = 0x{{ .gpg_full_fingerprint | lower }}
+
+[alias]
+    # Switch to personal email for this repository
+    personal = "config user.email {{ .personal_email }}"
+    # Switch to work email for this repository  
+    work = "config user.email {{ .work_email }}"
+    # Show current email
+    whoami = "config user.email"
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[core]
+    autocrlf = input
+    editor = vim
+    excludesFile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+
+[merge]
+    tool = vimdiff
+
+[diff]
+    tool = vimdiff
+
+[mergetool]
+    path = vim
+    trustExitCode = true
+
+[difftool]
+    path = vim
+    prompt = false
+    trustExitCode = true
+
+[commit]
+    gpgsign = true
+
+[advice]
+    ignoreHook = false
+    ignoredHook = false
+
+[pull]
+    ff = only
+    helper = manager
+
+[tag]
+    gpgsign = true
+
+[gitsign]
+    connectorID = https://github.com/login/oauth
+
+[init]
+    defaultBranch = main
+
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+
+[credential "https://dev.azure.com"]
+    useHttpPath = true

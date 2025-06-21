@@ -1,8 +1,12 @@
 #!/bin/bash
-# chezmoi:template:file=run_onchange_install-flatpaks.sh.tmpl
-# This template follows the official chezmoi pattern for declarative package installation
 
 set -euo pipefail
+
+# Only run on Linux systems
+if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+    echo "Flatpak is only supported on Linux. Skipping Flatpak package installation."
+    exit 0
+fi
 
 # Colors for output
 RED='\033[0;31m'

@@ -1,7 +1,4 @@
 #!/bin/bash
-# chezmoi:template:file=run_onchange_install-firefox-extensions.sh.tmpl
-# This template installs Firefox extensions using enterprise policies
-
 set -euo pipefail
 
 {{- $os := .chezmoi.os }}
@@ -36,32 +33,48 @@ FIREFOX_INSTALLED=false
 if command -v firefox &> /dev/null; then
     print_status "Found Firefox in PATH"
     FIREFOX_INSTALLED=true
-elif flatpak list --app | grep -q "org.mozilla.firefox"; then
+elif [[ "$OSTYPE" == "darwin"* ]] && [ -d "/Applications/Firefox.app" ]; then
+    print_status "Found Firefox.app in Applications"
+    FIREFOX_INSTALLED=true
+elif [[ "$OSTYPE" == "linux-gnu"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
     print_status "Found Firefox Flatpak installation"
     FIREFOX_INSTALLED=true
-elif [ -d "$HOME/.mozilla/firefox" ]; then
-    print_status "Found Firefox profile directory"
+elif [[ "$OSTYPE" == "darwin"* ]] && [ -d "$HOME/Library/Application Support/Firefox" ]; then
+    print_status "Found Firefox profile directory (macOS)"
+    FIREFOX_INSTALLED=true
+elif [[ "$OSTYPE" == "linux-gnu"* ]] && [ -d "$HOME/.mozilla/firefox" ]; then
+    print_status "Found Firefox profile directory (Linux)"
     FIREFOX_INSTALLED=true
 fi
 
 if [ "$FIREFOX_INSTALLED" = false ]; then
     print_error "Firefox is not installed. Please install Firefox first."
-    print_status "Install via system package manager or Flatpak:"
+    print_status "Install Firefox:"
+    {{- if eq $os "darwin" }}
+    print_status "  Download from: https://www.mozilla.org/firefox/"
+    print_status "  Or via Homebrew: brew install --cask firefox"
+    {{- else }}
     print_status "  Flatpak: flatpak install flathub org.mozilla.firefox"
     print_status "  Ubuntu:  sudo apt install firefox"
     print_status "  Fedora:  sudo dnf install firefox"
     print_status "  Arch:    sudo pacman -S firefox"
+    {{- end }}
     exit 1
 fi
 
 # Create Firefox policies directory (handle both regular and Flatpak installations)
-if flatpak list --app | grep -q "org.mozilla.firefox"; then
+if [[ "$OSTYPE" == "linux-gnu"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
     # Flatpak Firefox stores data in ~/.var/app/org.mozilla.firefox/
     FIREFOX_POLICIES_DIR="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/policies"
     FIREFOX_PROFILE_DIRS="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"
     print_status "Using Flatpak Firefox directories"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS Firefox installation
+    FIREFOX_POLICIES_DIR="$HOME/Library/Application Support/Firefox/policies"
+    FIREFOX_PROFILE_DIRS="$HOME/Library/Application Support/Firefox/Profiles"
+    print_status "Using macOS Firefox directories"
 else
-    # Regular Firefox installation
+    # Regular Firefox installation (Linux)
     FIREFOX_POLICIES_DIR="$HOME/.mozilla/firefox/policies"
     FIREFOX_PROFILE_DIRS="$HOME/.mozilla/firefox"
     print_status "Using regular Firefox directories"
@@ -160,8 +173,19 @@ print_success "Firefox policies.json created successfully"
 if [ -d "$FIREFOX_PROFILE_DIRS" ]; then
     print_status "Looking for Firefox profiles..."
     
-    # Find default profile directory
-    PROFILE_DIR=$(find "$FIREFOX_PROFILE_DIRS" -name "*.default*" -type d | head -1)
+    # Find profile directory (different approach for macOS vs Linux)
+    PROFILE_DIR=""
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS: Look for profiles in ~/Library/Application Support/Firefox/Profiles/
+        PROFILE_DIR=$(find "$FIREFOX_PROFILE_DIRS" -name "*.default*" -type d 2>/dev/null | head -1)
+        if [ -z "$PROFILE_DIR" ]; then
+            # Try alternative profile naming patterns on macOS
+            PROFILE_DIR=$(find "$FIREFOX_PROFILE_DIRS" -type d -name "*default*" 2>/dev/null | head -1)
+        fi
+    else
+        # Linux: Original logic
+        PROFILE_DIR=$(find "$FIREFOX_PROFILE_DIRS" -name "*.default*" -type d 2>/dev/null | head -1)
+    fi
     
     if [ -n "$PROFILE_DIR" ]; then
         print_status "Found Firefox profile: $PROFILE_DIR"
@@ -179,6 +203,9 @@ EOF
         print_success "Firefox user.js preferences updated"
     else
         print_warning "No Firefox profile found. Extensions will be installed on next Firefox startup."
+        {{- if eq $os "darwin" }}
+        print_status "Note: On macOS, profiles are created after first Firefox launch."
+        {{- end }}
     fi
 fi
 
@@ -220,4 +247,3 @@ print_status "             sudo pacman -S chrome-gnome-shell (Arch)"
 {{- end }}
 
 print_success "Firefox extension management setup complete!"
-

@@ -34,3 +34,9 @@ else
 end
 # <<< conda initialize <<<
 
+# YubiKey GPG/SSH setup for fish shell
+set -x GPG_TTY (tty)
+set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+
+# Refresh GPG agent connection
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
