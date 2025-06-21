@@ -1,0 +1,13 @@
+# Enable SSH support
+enable-ssh-support
+
+{{- if eq .chezmoi.os "darwin" }}
+pinentry-program /opt/homebrew/bin/pinentry-mac
+{{- else if eq .chezmoi.os "linux" }}
+pinentry-program {{ lookPath "pinentry-gnome3" }}
+{{- end }}
+
+# Debugging (uncomment if needed)
+# debug-level basic
+# log-file ~/.gnupg/gpg-agent.log
+
