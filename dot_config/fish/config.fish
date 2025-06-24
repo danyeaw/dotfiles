@@ -40,3 +40,6 @@ set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
 # Refresh GPG agent connection
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+
+set -gx EDITOR nvim
+

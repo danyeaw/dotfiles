@@ -5,3 +5,7 @@
 .gnupg/private-keys-v1.d/
 .gnupg/openpgp-revocs.d/
 .gnupg/random_seed
+
+LICENSE
+README.md
+

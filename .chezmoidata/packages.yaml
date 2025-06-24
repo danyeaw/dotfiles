@@ -3,7 +3,6 @@ packages:
     development:
       - 'com.visualstudio.code'
       - 'com.vscodium.codium'
-      - 'org.gnome.Builder'
       - 'org.gnome.Devhelp'
       - 're.sonny.Workbench'
       - 're.sonny.Commit'
@@ -33,7 +32,6 @@ packages:
       - 'org.gimp.GIMP'
       - 'org.inkscape.Inkscape'
       - 'org.pitivi.Pitivi'
-      - 'org.gnome.Music'
       - 'org.gnome.Loupe'
       - 'org.gnome.Snapshot'
       - 'de.haeckerfelix.Shortwave'
@@ -41,10 +39,6 @@ packages:
 
     office:
       - 'org.libreoffice.LibreOffice'
-      - 'org.gnome.Calculator'
-      - 'org.gnome.Calendar'
-      - 'org.gnome.Contacts'
-      - 'org.gnome.TextEditor'
       - 'org.gnome.gitlab.somas.Apostrophe'
       - 'io.github.fkinoshita.Telegraph'
       - 'io.github.mrvladus.List'
@@ -53,7 +47,6 @@ packages:
       - 'com.calibre_ebook.calibre'
       - 'com.github.babluboy.bookworm'
       - 'com.github.johnfactotum.Foliate'
-      - 'org.gnome.Evince'
       - 'io.github.diegoivan.pdf_metadata_editor'
 
     system:
@@ -92,11 +85,6 @@ packages:
       - 're.sonny.Junction'
       - 're.sonny.Tangram'
       - 'io.gitlab.news_flash.NewsFlash'
-
-    virtualization:
-      - 'org.gnome.Boxes'
-      - 'org.gnome.Maps'
-      - 'org.gnome.Weather'
 
     data:
       - 'se.sjoerd.Graphs'

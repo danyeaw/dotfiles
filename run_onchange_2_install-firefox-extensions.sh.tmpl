@@ -36,13 +36,13 @@ if command -v firefox &> /dev/null; then
 elif [[ "$OSTYPE" == "darwin"* ]] && [ -d "/Applications/Firefox.app" ]; then
     print_status "Found Firefox.app in Applications"
     FIREFOX_INSTALLED=true
-elif [[ "$OSTYPE" == "linux-gnu"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
+elif [[ "$OSTYPE" == "linux"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
     print_status "Found Firefox Flatpak installation"
     FIREFOX_INSTALLED=true
 elif [[ "$OSTYPE" == "darwin"* ]] && [ -d "$HOME/Library/Application Support/Firefox" ]; then
     print_status "Found Firefox profile directory (macOS)"
     FIREFOX_INSTALLED=true
-elif [[ "$OSTYPE" == "linux-gnu"* ]] && [ -d "$HOME/.mozilla/firefox" ]; then
+elif [[ "$OSTYPE" == "linux"* ]] && [ -d "$HOME/.mozilla/firefox" ]; then
     print_status "Found Firefox profile directory (Linux)"
     FIREFOX_INSTALLED=true
 fi
@@ -63,7 +63,7 @@ if [ "$FIREFOX_INSTALLED" = false ]; then
 fi
 
 # Create Firefox policies directory (handle both regular and Flatpak installations)
-if [[ "$OSTYPE" == "linux-gnu"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
+if [[ "$OSTYPE" == "linux"* ]] && command -v flatpak &> /dev/null && flatpak list --app | grep -q "org.mozilla.firefox"; then
     # Flatpak Firefox stores data in ~/.var/app/org.mozilla.firefox/
     FIREFOX_POLICIES_DIR="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/policies"
     FIREFOX_PROFILE_DIRS="$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"

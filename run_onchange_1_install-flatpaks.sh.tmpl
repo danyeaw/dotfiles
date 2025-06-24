@@ -2,11 +2,10 @@
 
 set -euo pipefail
 
-# Only run on Linux systems
-if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+{{ if ne .chezmoi.os "linux" }}
     echo "Flatpak is only supported on Linux. Skipping Flatpak package installation."
     exit 0
-fi
+{{ end }}
 
 # Colors for output
 RED='\033[0;31m'
@@ -57,7 +56,7 @@ if flatpak list --app | grep -q "{{ $app }}"; then
     print_warning "{{ $app }} is already installed, skipping..."
 else
     print_status "Installing {{ $app }}..."
-    if flatpak install -y flathub {{ $app | quote }}; then
+    if flatpak install --user -y flathub {{ $app | quote }}; then
         print_success "{{ $app }} installed successfully"
     else
         print_error "Failed to install {{ $app }}"
