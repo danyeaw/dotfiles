@@ -60,6 +60,15 @@ echo "Work email: {{ .work_email }}"
 echo "Default email: {{ .default_email }}"
 echo
 
+# Pre-flight check: Ensure YubiKey is working
+print_status "Pre-flight check: Testing YubiKey..."
+if ! gpg --card-status >/dev/null 2>&1; then
+    print_error "YubiKey not detected. Please ensure it's properly inserted."
+    echo "Run 'gpg --card-status' to verify, or reboot if needed."
+    exit 1
+fi
+print_success "YubiKey detected and working"
+
 # Check for required dependencies
 if [[ "$OSTYPE" == "darwin"* ]]; then
     print_status "Detected macOS system"
@@ -71,16 +80,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         print_success "GPG tools found"
     fi
     
-    # Ensure proper pinentry is configured for macOS
-    if [ ! -f ~/.gnupg/gpg-agent.conf ] || ! grep -q "pinentry-mac" ~/.gnupg/gpg-agent.conf 2>/dev/null; then
-        print_status "Configuring pinentry for macOS..."
-        mkdir -p ~/.gnupg
-        if command_exists pinentry-mac; then
-            echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
-        fi
-    fi
-    
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+elif [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "linux"* ]]; then
     print_status "Detected Linux system"
     
     if ! command_exists gpg || ! command_exists gpgconf; then
@@ -91,56 +91,59 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         exit 1
     fi
 else
-    print_warning "Unknown operating system: $OSTYPE"
+    print_status "Detected system: $OSTYPE"
     print_status "Proceeding with GPG setup..."
 fi
 
-# Create and fix GPG directory permissions
+# Create GPG directory with proper permissions
+# CRITICAL: DO NOT use chmod 600 ~/.gnupg/* as it breaks directories!
 mkdir -p ~/.gnupg
 chmod 700 ~/.gnupg
 
-# Fix permissions on existing files (suppress errors for empty directory)
-if [ -n "$(ls -A ~/.gnupg 2>/dev/null)" ]; then
-    chmod 600 ~/.gnupg/* 2>/dev/null || true
+# SAFE permission fixes - only touch specific files that commonly need it
+# DO NOT glob all files as this breaks subdirectories
+if [ -f ~/.gnupg/pubring.kbx ]; then
+    chmod 600 ~/.gnupg/pubring.kbx
 fi
 
-print_success "GPG directory permissions configured"
+if [ -f ~/.gnupg/trustdb.gpg ]; then
+    chmod 600 ~/.gnupg/trustdb.gpg
+fi
+
+if [ -f ~/.gnupg/random_seed ]; then
+    chmod 600 ~/.gnupg/random_seed
+fi
+
+if [ -f ~/.gnupg/gpg.conf ]; then
+    chmod 600 ~/.gnupg/gpg.conf
+fi
+
+if [ -f ~/.gnupg/gpg-agent.conf ]; then
+    chmod 600 ~/.gnupg/gpg-agent.conf
+fi
+
+if [ -f ~/.gnupg/scdaemon.conf ]; then
+    chmod 600 ~/.gnupg/scdaemon.conf
+fi
+
+# Ensure subdirectories have correct permissions
+if [ -d ~/.gnupg/private-keys-v1.d ]; then
+    chmod 700 ~/.gnupg/private-keys-v1.d
+    # Fix files inside the directory
+    if [ -n "$(ls -A ~/.gnupg/private-keys-v1.d 2>/dev/null)" ]; then
+        chmod 600 ~/.gnupg/private-keys-v1.d/*
+    fi
+fi
+
+print_success "GPG directory permissions configured safely"
 
 # Ensure SSH directory exists with proper permissions
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 print_success "SSH directory configured"
 
-# Kill any existing GPG agent to pick up new config
-print_status "Restarting GPG agent..."
-gpgconf --kill gpg-agent 2>/dev/null || true
-gpgconf --kill scdaemon 2>/dev/null || true
-sleep 2
-
-# Start GPG agent (will read config and create SSH socket)
-print_status "Starting GPG agent..."
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    # On macOS, we might need to start the agent differently
-    gpg-agent --daemon --enable-ssh-support 2>/dev/null || true
-else
-    gpg-agent --daemon 2>/dev/null || true
-fi
-
-# Wait a moment for the agent to start
-sleep 1
-
 # Extract SSH public key from GPG authentication subkey
 print_status "Extracting SSH public key from GPG authentication subkey..."
-
-# First, let's check if we can see the YubiKey
-if ! gpg --card-status >/dev/null 2>&1; then
-    print_warning "YubiKey not detected. Please ensure:"
-    echo "  1. YubiKey is properly inserted"
-    echo "  2. YubiKey has GPG keys configured"
-    echo "  3. You have the necessary permissions"
-    echo ""
-    print_status "Attempting to continue with key extraction..."
-fi
 
 # Try to extract the SSH key
 SSH_KEY_EXTRACTED=false
@@ -160,7 +163,7 @@ else
     echo "  2. Check that GPG keys are properly configured on the YubiKey"
     echo "  3. Try: gpg --card-status"
     echo "  4. Try: gpg --list-secret-keys"
-    echo "  5. You may need to replug your YubiKey and try again"
+    echo "  5. Verify key IDs: {{ .gpg_auth_subkey }} and {{ .gpg_main_key }}"
     
     # Don't exit here, let the user see the setup information
     print_warning "Continuing with setup instructions..."
@@ -171,6 +174,17 @@ if [ "$SSH_KEY_EXTRACTED" = true ]; then
     echo ""
     print_success "SSH Public Key:"
     cat ~/.ssh/id_rsa_yubikey.pub
+fi
+
+# Final verification - ensure we didn't break anything
+print_status "Final verification: Testing YubiKey..."
+if gpg --card-status >/dev/null 2>&1; then
+    print_success "YubiKey verification successful"
+else
+    print_error "YubiKey verification failed!"
+    echo "This shouldn't happen with safe permission handling"
+    echo "Something unexpected occurred"
+    exit 1
 fi
 
 echo ""
@@ -196,15 +210,22 @@ echo "- Use 'git work' to switch current repo to {{ .work_email }}"
 echo "- Use 'git whoami' to see current email"
 
 echo ""
-print_status "macOS-specific notes:"
-echo "- GPG agent will start automatically on login"
-echo "- If you experience issues, try: gpgconf --kill gpg-agent && gpg-agent --daemon"
-echo "- For SSH authentication, ensure your shell loads GPG agent's SSH socket"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    print_status "macOS-specific notes:"
+    echo "- GPG agent will start automatically on login"
+    echo "- If you experience issues, try: gpgconf --kill gpg-agent && gpg-agent --daemon"
+    echo "- For SSH authentication, ensure your shell loads GPG agent's SSH socket"
+else
+    print_status "Linux-specific notes:"
+    echo "- GPG services are managed automatically on your system"
+    echo "- For SSH authentication, ensure SSH_AUTH_SOCK points to GPG agent socket"
+    echo "- If you experience issues, try: gpgconf --reload gpg-agent"
+fi
 
 echo ""
 print_status "To test SSH authentication with your YubiKey:"
 echo "1. Try: ssh-add -L  # Should show your YubiKey's SSH key"
 echo "2. Test SSH connection to your Git service"
 
-print_success "YubiKey setup complete!"
+print_success "YubiKey setup complete - no reboot required!"
 
