@@ -27,6 +27,7 @@ packages:
       - 'org.mozilla.Thunderbird'
       - 'dev.geopjr.Tuba'
       - 'so.libdb.dissent'
+      - 'org.gnome.Fractal'
 
     media:
       - 'org.gimp.GIMP'

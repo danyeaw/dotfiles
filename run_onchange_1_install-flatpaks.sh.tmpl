@@ -38,9 +38,9 @@ if ! command -v flatpak &> /dev/null; then
 fi
 
 # Check if flathub remote is added
-if ! flatpak remotes | grep -q flathub; then
+if ! flatpak remotes --user | grep -q flathub; then
     print_status "Adding Fluthub remote..."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     print_success "Flathub remote added"
 fi
 
