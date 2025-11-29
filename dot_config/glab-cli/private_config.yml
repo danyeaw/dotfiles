@@ -1,0 +1,17 @@
+git_protocol: https
+editor:
+browser:
+glamour_style: dark
+check_update: false
+last_update_check_timestamp:
+display_hyperlinks: false
+host: gitlab.gnome.org
+no_prompt: false
+telemetry: true
+hosts:
+    gitlab.gnome.org:
+        api_host: gitlab.gnome.org
+        git_protocol: https
+        api_protocol: https
+        user: danyeaw
+        container_registry_domains: gitlab.gnome.org,gitlab.gnome.org:443,registry.gitlab.gnome.org
