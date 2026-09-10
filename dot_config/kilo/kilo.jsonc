@@ -1,0 +1,109 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "auto_collapse_reasoning": false,
+  "terminal_command_display": "expanded",
+  "permission": {
+    "read": {
+      "*": "allow",
+      "*.env": "ask",
+      "*.env.*": "ask",
+      "*.env.example": "allow"
+    },
+    "edit": {
+      "*": "allow"
+    },
+    "glob": {
+      "*": "allow"
+    },
+    "grep": {
+      "*": "allow"
+    },
+    "list": "allow",
+    "bash": {
+      "*": "ask",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "less *": "allow",
+      "ls *": "allow",
+      "tree *": "allow",
+      "pwd *": "allow",
+      "echo *": "allow",
+      "wc *": "allow",
+      "which *": "allow",
+      "type *": "allow",
+      "file *": "allow",
+      "diff *": "allow",
+      "du *": "allow",
+      "df *": "allow",
+      "date *": "allow",
+      "uname *": "allow",
+      "whoami *": "allow",
+      "printenv *": "allow",
+      "man *": "allow",
+      "grep *": "allow",
+      "rg *": "allow",
+      "ag *": "allow",
+      "uniq *": "allow",
+      "cut *": "allow",
+      "tr *": "allow",
+      "jq *": "allow",
+      "*>*": "ask",
+      "sed *": "allow",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "sleep *": "allow",
+      "find *": "allow",
+      "printf *": "allow",
+      "git log *": "allow",
+      "gh pr view *": "allow",
+      "gh pr diff *": "allow",
+      "gh issue view *": "allow",
+      "true *": "allow",
+      "git show *": "allow",
+      "conda list *": "allow",
+      "conda info *": "allow",
+      "conda env list *": "allow",
+      "conda search *": "allow",
+      "conda config --show *": "allow",
+      // Harmful commands: always prompt, even if catch-all is relaxed later
+      "conda create *": "ask",
+      "conda env create *": "ask",
+      "conda env update *": "ask",
+      "conda install *": "ask",
+      "conda remove *": "ask",
+      "conda env remove *": "ask",
+      "conda update *": "ask",
+      "pip install *": "ask",
+      "pip3 install *": "ask",
+      "python -m pip install *": "ask",
+      "python3 -m pip install *": "ask",
+      "git commit *": "ask",
+      "git push *": "ask",
+      "git reset *": "ask",
+      "git rebase *": "ask",
+      "git clean *": "ask",
+      "gh pr create *": "ask"
+    },
+    "external_directory": {
+      "*": "ask",
+      "/Users/dyeaw/.local/share/kilo/plans/*": "allow"
+    },
+    "question": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "doom_loop": "ask",
+    "*": "ask",
+    "codesearch": "allow",
+    "todowrite": "allow"
+  },
+  "default_agent": "plan",
+  "instructions": ["~/.config/kilo/instructions/*.md"],
+  "mcp": {
+    "basic-memory": {
+      "type": "local",
+      "command": ["uvx", "basic-memory", "mcp"],
+      "enabled": true
+    }
+  }
+}
