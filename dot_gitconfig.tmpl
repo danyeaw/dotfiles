@@ -45,7 +45,6 @@
 
 [pull]
     ff = only
-    helper = manager
 
 [tag]
     gpgsign = true
@@ -61,6 +60,9 @@
     process = git-lfs filter-process
     required = true
     clean = git-lfs clean -- %f
+
+[credential "https://github.com"]
+    helper = gh auth git-credential
 
 [credential "https://dev.azure.com"]
     useHttpPath = true
