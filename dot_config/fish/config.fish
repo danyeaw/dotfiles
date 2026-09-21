@@ -25,14 +25,16 @@ set PATH $PATH ~/.local/bin
 # !! Contents within this block are managed by 'conda init' !!
 if test -f $HOME/miniconda3/bin/conda
     eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else if test -f "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+    . "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+else if test -f $HOME/miniforge3/bin/conda
+    eval $HOME/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+else if test -f "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
+    . "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
 else
-    if test -f "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
-        . "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "$HOME/miniconda3/bin" $PATH
-    end
+    set -x PATH "$HOME/miniconda3/bin" "$HOME/miniforge3/bin" $PATH
 end
-# <<< conda initialize <<<
+# <<< conda initialize <
 
 # YubiKey GPG/SSH setup for fish shell
 set -x GPG_TTY (tty)
