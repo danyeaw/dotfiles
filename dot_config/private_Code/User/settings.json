@@ -12,5 +12,6 @@
     "github.copilot.enable": false,
     "github.copilot.editor.enable": false,
     "chat.agent.enabled": false,
-    "chat.promptFiles.enabled": false
+    "chat.promptFiles.enabled": false,
+    "files.autoSave": "afterDelay"
 }
