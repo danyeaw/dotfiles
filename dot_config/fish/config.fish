@@ -45,3 +45,6 @@ gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 set -gx EDITOR nvim
 
+
+# Pixi
+fish_add_path $HOME/.pixi/bin
