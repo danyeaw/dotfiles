@@ -45,6 +45,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 set -gx EDITOR nvim
 
-
 # Pixi
-fish_add_path $HOME/.pixi/bin
+set PATH $PATH $HOME/.pixi/bin
+
+# Created by `conda-global` on 2026-11-14 23:43:37
+set PATH $PATH $HOME/.conda/global/bin
