@@ -2,3 +2,4 @@
 .venv
 .flatpak-builder
 .DS_STORE
+.kilo
