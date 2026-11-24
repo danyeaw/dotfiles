@@ -9,3 +9,5 @@
 LICENSE
 README.md
 
+{{ if ne .chezmoi.os "windows" }} AppData/Roaming/GitHub CLI/config.yml {{ end }}
+{{ if eq .chezmoi.os "windows" }} dot_config/gh/config.yml {{ end }}
