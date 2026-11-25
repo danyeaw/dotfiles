@@ -26,10 +26,3 @@ accessible_prompter: disabled
 # Whether to use an animated spinner as a progress indicator. If disabled, a textual progress indicator is used instead. Supported values: enabled, disabled
 spinner: enabled
 expiring_credentials: enabled
-
-{{- $githubToken := promptStringOnce . "github_token" "GitHub CLI OAuth token" -}}
-hosts:
-  github.com:
-    oauth_token: {{ $githubToken | quote }}
-    user: danyeaw
-    git_protocol: https
